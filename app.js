@@ -1,7 +1,13 @@
-
 // Using time from the system.
 var today = new Date();
-var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var hours = today.getHours();
+var frame = "AM";
+if(hours > 12)
+{
+    hours = hours-12;
+    frame = "PM";
+}
+var time = hours + ":" + today.getMinutes() + ":" + today.getSeconds()+ " "+frame;
 
 
 const express = require("express");
@@ -59,17 +65,21 @@ app.post("/", function (request, res) {
             const weather = JSON.parse(data);
             temperature = weather.main.temp;
             wind = weather.wind.speed;
-            // const imgIcon = weather.weather[0].icon;
             description = weather.weather[0].description;
+            res.write("The place entered by you is :" + city);
+            res.write("Wind = " + wind);
+            res.write("temperature = " + temperature);
+            res.write("Description : " + description);
+            res.send();
+            // const imgIcon = weather.weather[0].icon;
+
+            // Trying to fetch the dom elements first in order to make some changes in there.
+            
             
             // const imageUrl = "http://openweathermap.org/img/w/"+imgIcon+".png";
         })
         console.log("Process finished!!!");
-        res.write("The place entered by you is :" + city);
-        res.write("Wind = " + wind);
-        res.write("temperature = " + temperature);
-        res.write("Description : " + description);
-        res.send();
+        
         // res.sendFile(__dirname+"/success.html");
 
     });
