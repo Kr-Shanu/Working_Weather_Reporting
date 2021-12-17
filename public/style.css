@@ -6,25 +6,19 @@ body {
   color: #505962;
 }
 
-.navbar {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.navbar-brand img {
-  height: 2rem;
-}
 
 .video-background {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-width: 100vh;
   /* We can dim the colour of the background video with the help of the last one varying 0.2-0.5 */
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .caption {
   position: absolute;
-  top: 38%;
+  top: 25%;
   width: 100%;
   color: white;
 }
