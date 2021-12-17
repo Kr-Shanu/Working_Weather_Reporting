@@ -1,0 +1,15 @@
+{
+  "name": "weather_reporting",
+  "version": "1.0.0",
+  "description": "This is a weather reporting website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kumar Shanu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2"
+  }
+}
