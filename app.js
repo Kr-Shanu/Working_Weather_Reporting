@@ -16,7 +16,6 @@ const bodyParser = require("body-parser");
 
 const http = require("https");
 
-
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,13 +28,6 @@ app.get("/", function (req, res) {
     console.log("Process initiated!!");
     res.sendFile(__dirname + "/index.html");
 });
-
-
-// Defining all the variable to change the html elements
-var city = "bhagalpur";
-var temperature = "0 degree Centigrade";
-var wind = "0 ";
-var description = "Windy!"
 
 
 
@@ -63,28 +55,22 @@ app.post("/", function (request, res) {
         response.on("data", function (data) 
         {
             const weather = JSON.parse(data);
-            temperature = weather.main.temp;
-            wind = weather.wind.speed;
-            description = weather.weather[0].description;
-            res.write("The place entered by you is :" + city);
-            res.write("Wind = " + wind);
-            res.write("temperature = " + temperature);
-            res.write("Description : " + description);
+            const temperature = weather.main.temp;
+            const wind = weather.wind.speed;
+            const description = weather.weather[0].description;
+            res.write("<h1>The place entered by you is : "+ city +"</h1>");
+            res.write("<h3>Wind = " + wind +" </h3>");
+            res.write("<h3>Temperature = " + temperature + "</h3>");
+            res.write("<h3>Description :"  + description + "</h3>");
             res.send();
             // const imgIcon = weather.weather[0].icon;
-
             // Trying to fetch the dom elements first in order to make some changes in there.
-            
-            
             // const imageUrl = "http://openweathermap.org/img/w/"+imgIcon+".png";
         })
-        console.log("Process finished!!!");
-        
+        console.log("Process finished!!!");       
         // res.sendFile(__dirname+"/success.html");
-
     });
-    console.log(city);
-
+    // console.log(city);
 });
 
 
@@ -99,6 +85,7 @@ app.post("/success", function(req, res)
 {
     res.redirect("/");
 });
+
 
 app.listen(3000, function () {
     console.log("Application is running at port 3000 at time : "+time);

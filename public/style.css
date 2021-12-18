@@ -18,7 +18,8 @@ body {
 
 .caption {
   position: absolute;
-  top: 25%;
+  /* This makes it really handy to scroll the division above */
+  top: 25%;  /* or below the screen. */
   width: 100%;
   color: white;
 }
