@@ -55,26 +55,44 @@ app.post("/", function (request, res) {
     // Getting information using https get  function using the above url.
     http.get(url, function (response) 
     {
-        console.log("Status code :"+ res.statusCode);
-        console.log("Https is working");
-
-        response.on("data", function (data) 
+        let status = response.statusCode;
+        console.log("Status code :"+ status);
+        if(status === 200)
         {
-            const city_name = city;
-            const weather = JSON.parse(data);
-            const temperature = weather.main.temp;
-            const wind = Math.floor((weather.wind.speed)*3.60);
-            const description = weather.weather[0].description;
-            const imgIcon = weather.weather[0].icon;
-            const imageUrl = "http://openweathermap.org/img/w/"+imgIcon+".png";
-            res.render("show_weather", {dc : temperature, speed : wind, cities: city_name,desc: description, icon: imageUrl});
-        })
-        console.log("Process finished!!!");       
+            console.log("Https is working");
+
+            response.on("data", function (data) 
+            {
+                const city_name = city;
+                const weather = JSON.parse(data);
+                const temperature = weather.main.temp;
+                const wind = Math.floor((weather.wind.speed)*3.60);
+                const description = weather.weather[0].description;
+                const imgIcon = weather.weather[0].icon;
+                const imageUrl = "http://openweathermap.org/img/w/"+imgIcon+".png";
+                res.render("show_weather", {dc : temperature, speed : wind, cities: city_name,desc: description, icon: imageUrl});
+            })
+            console.log("Process finished!!!"); 
+        }else
+        {
+            res.sendFile(__dirname+"/failure.html");
+        }          
     });
 });
 
 
+app.get("/failure", function(req, res)
+{
+    res.sendFile(__dirname+"/failure.html");
+});
+
+
 app.post("/success", function(req, res)
+{
+    res.redirect("/");
+});
+
+app.post("/failure", function(req, res)
 {
     res.redirect("/");
 });
