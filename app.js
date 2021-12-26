@@ -42,7 +42,10 @@ app.post("/", function (request, res) {
     const unit = "metric";
     // Api key is required for authentication
 
+
     const apiKey = "" // ☠️☠️❌❌❌ here you need to enter your api key from open weather api to make it run ❌❌❌
+
+ 
 
     // This url is the url for the open weather api without the other attributes
     const url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=" + unit;
