@@ -63,7 +63,7 @@ app.post("/", function (request, res) {
 
             response.on("data", function (data) 
             {
-                const city_name = city;
+                const city_name = city.substring(0,1).toUpperCase() + city.substring(1,).toLowerCase();
                 const weather = JSON.parse(data);
                 const temperature = weather.main.temp;
                 const wind = Math.floor((weather.wind.speed)*3.60);
@@ -73,8 +73,7 @@ app.post("/", function (request, res) {
                 res.render("show_weather", {dc : temperature, speed : wind, cities: city_name,desc: description, icon: imageUrl});
             })
             console.log("Process finished!!!"); 
-        }else
-        {
+        }else{
             res.sendFile(__dirname+"/failure.html");
         }          
     });
