@@ -7,7 +7,7 @@ if(hours > 12)
     hours = hours-12;
     frame = "PM";
 }
-let time = hours + ":" + today.getMinutes() + ":" + today.getSeconds()+ " "+frame;
+let time = hours + ":" + today.getMinutes() +" "+frame;
 
 
 const express = require("express");
